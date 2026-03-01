@@ -18,7 +18,7 @@ export default function Home() {
     <>
       <title>ShopMart | Home</title>
       <section className="text-center min-h-screen flex justify-center items-center flex-col">
-        <h1 className="text-5xl md:text-6xl font-extrabold mb-6">Welcome to ShopMart</h1>
+        <h1 className="text-4xl md:text-6xl font-extrabold mb-6 px-4">Welcome to ShopMart</h1>
         <p className="capitalize text-lg md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">Discover the latest technology, fashion, and lifestyle products.
           quality quaranteed with fast shipping and excellent customer service.
         </p>

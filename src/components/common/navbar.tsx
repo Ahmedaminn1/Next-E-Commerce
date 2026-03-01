@@ -15,8 +15,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ShoppingCart, UserRound, Moon, Sun } from "lucide-react";
+import { ShoppingCart, UserRound, Moon, Sun, Menu, X } from "lucide-react";
 import { Badge } from "../ui/badge";
+import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { CartContext } from "@/providers/cart-provider";
 import { useSelector, useDispatch } from "react-redux";
@@ -27,6 +28,7 @@ import { Button } from "../ui/button";
 export default function Navbar() {
   const { data: session } = useSession();
   const { noOfCartItems } = useContext(CartContext);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 
   const { count } = useSelector((state: RootState) => state.counter);
@@ -50,7 +52,7 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <div className="nav-links">
+        <div className="nav-links hidden md:block">
           <NavigationMenu className="gap-2">
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
@@ -70,7 +72,17 @@ export default function Navbar() {
           </NavigationMenu>
         </div>
 
-        <div className="nav-actions flex items-center gap-4">
+        <div className="nav-actions flex items-center gap-2 md:gap-4">
+          <div className="md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </Button>
+          </div>
           <Button
             variant="ghost"
             size="icon"
@@ -125,6 +137,33 @@ export default function Navbar() {
           )}
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden mt-4 space-y-4 border-t pt-4">
+          <Link
+            href="/products"
+            className="block text-lg font-medium"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Products
+          </Link>
+          <Link
+            href="/brands"
+            className="block text-lg font-medium"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Brands
+          </Link>
+          <Link
+            href="/categories"
+            className="block text-lg font-medium"
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Categories
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }

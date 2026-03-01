@@ -33,7 +33,7 @@ export default async function Products() {
         <div className="container mx-auto p-5">
           <div className="grid grid-cols-12 gap-6">
             {data.map((product: ProductI) => <React.Fragment key={product._id}>
-              <div className="col-span-3">
+              <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3">
                 <Card>
                   <Link href={`/products/${product._id}`}>
                     <Image width={1000} height={1000} src={product.imageCover} alt="product" className="w-full object-cover h-90" />
