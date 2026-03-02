@@ -48,7 +48,7 @@ export default function Navbar() {
             <AvatarFallback>S</AvatarFallback>
           </Avatar>
           <Link href="/" className="text-2xl font-bold">
-            ShopMart {count}
+            ShopMart
           </Link>
         </div>
 

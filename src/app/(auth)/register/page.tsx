@@ -18,6 +18,7 @@ import { registerSchema, registerSchemaType } from "@/schema/auth.schema";
 import { registerUser } from "@/services/auth.services";
 import { Spinner } from "@/components/ui/spinner";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function Register() {
   const router = useRouter()
@@ -36,6 +37,10 @@ export default function Register() {
   async function onsubmit(values: registerSchemaType) {
     const data = await registerUser(values)
     if (data.message == "success") {
+      toast.success("You Registered Successfully ✅", {
+        position: "top-right",
+        duration: 3000
+      })
       router.push("/login")
     }
   }
