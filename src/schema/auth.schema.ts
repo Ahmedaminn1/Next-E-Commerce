@@ -8,7 +8,7 @@ export const registerSchema = z
       .string()
       .nonempty("Name is Required")
       .min(2, "Min Length 3")
-      .max(10, "Max Length 10"),
+      .max(12, "Max Length 12"),
     email: z.email().nonempty("Email is Required"),
     password: z
       .string()
