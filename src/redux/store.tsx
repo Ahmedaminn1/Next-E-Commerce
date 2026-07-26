@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import { counterReducer } from './slices/counterSlices'
 import { productsReducer } from './slices/ProductsSlices'
 import { themeReducer } from './slices/themeSlice'
+import { wishlistReducer } from './slices/wishlistSlice'
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
     product: productsReducer,
-    theme: themeReducer
+    theme: themeReducer,
+    wishlist: wishlistReducer
   },
 })
 

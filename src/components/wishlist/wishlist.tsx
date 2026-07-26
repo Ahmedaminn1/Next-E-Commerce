@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getWishlist, removeProductFromWishlist } from "@/app/_actions/wishlist.actions";
 import { ProductI } from "@/interfaces/product";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "../ui/card";
@@ -9,12 +9,13 @@ import { Heart, Star, Trash2 } from "lucide-react";
 import AddCartButton from "../products/addToCartBtn";
 import { Spinner } from "../ui/spinner";
 import { toast } from "sonner";
-import { WishlistContext } from "@/providers/wishlist-provider";
+import { useDispatch } from "react-redux";
+import { removeWishlistItem } from "@/redux/slices/wishlistSlice";
 
 export default function WishlistComponent() {
   const [products, setProducts] = useState<ProductI[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const { setWishlistItems } = useContext(WishlistContext);
+  const dispatch = useDispatch();
 
   async function fetchWishlist() {
     try {
@@ -41,7 +42,7 @@ export default function WishlistComponent() {
       const response = await removeProductFromWishlist(id);
       if (response.status === "success") {
         setProducts((prev) => prev.filter((p) => p._id !== id));
-        setWishlistItems((prev) => prev.filter((itemId) => itemId !== id));
+        dispatch(removeWishlistItem(id));
         toast.success("Removed from wishlist");
       }
     } catch (error) {

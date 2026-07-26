@@ -20,7 +20,6 @@ import { Badge } from "../ui/badge";
 import { useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { CartContext } from "@/providers/cart-provider";
-import { WishlistContext } from "@/providers/wishlist-provider";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import { toggleTheme } from "@/redux/slices/themeSlice";
@@ -29,7 +28,7 @@ import { Button } from "../ui/button";
 export default function Navbar() {
   const { data: session } = useSession();
   const { noOfCartItems } = useContext(CartContext);
-  const { wishlistItems } = useContext(WishlistContext);
+  const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 

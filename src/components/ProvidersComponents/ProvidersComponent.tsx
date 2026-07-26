@@ -1,7 +1,7 @@
 "use client";
 import AuthProvider from "@/providers/auth-provider";
 import CartContextProvider from "@/providers/cart-provider";
-import WishlistContextProvider from "@/providers/wishlist-provider";
+import WishlistInitializer from "@/components/wishlist/wishlist-initializer";
 import React from "react";
 import { Provider } from "react-redux";
 import Navbar from "../common/navbar";
@@ -12,14 +12,13 @@ import ThemeProvider from "@/providers/theme-provider";
 export default function ProvidersComponent({children,}: {children: React.ReactNode;}) {
   return (
     <Provider store={store}>
+      <WishlistInitializer />
       <ThemeProvider>
         <AuthProvider>
           <CartContextProvider>
-            <WishlistContextProvider>
-              <Navbar />
-              <div className="pt-19">{children}</div>
-              <Footer />
-            </WishlistContextProvider>
+            <Navbar />
+            <div className="pt-19">{children}</div>
+            <Footer />
           </CartContextProvider>
         </AuthProvider>
       </ThemeProvider>

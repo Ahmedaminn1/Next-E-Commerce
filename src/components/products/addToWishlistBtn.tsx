@@ -1,13 +1,16 @@
 "use client";
 import React, { useContext, useState } from "react";
 import { Heart } from "lucide-react";
-import { WishlistContext } from "@/providers/wishlist-provider";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/redux/store";
+import { addWishlistItem, removeWishlistItem } from "@/redux/slices/wishlistSlice";
 import { addToWishlist, removeProductFromWishlist } from "@/app/_actions/wishlist.actions";
 import { toast } from "sonner";
 import { useSession } from "next-auth/react";
 
 export default function AddToWishlistBtn({ prodId }: { prodId: string }) {
-  const { wishlistItems, setWishlistItems } = useContext(WishlistContext);
+  const wishlistItems = useSelector((state: RootState) => state.wishlist.items);
+  const dispatch = useDispatch();
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
 
@@ -28,7 +31,7 @@ export default function AddToWishlistBtn({ prodId }: { prodId: string }) {
         const res = await removeProductFromWishlist(prodId);
         if (res?.status === "success") {
           toast.success("Removed from wishlist");
-          setWishlistItems((prev) => prev.filter((id) => id !== prodId));
+          dispatch(removeWishlistItem(prodId));
         } else {
           toast.error(res?.message || "Failed to remove from wishlist");
         }
@@ -36,7 +39,7 @@ export default function AddToWishlistBtn({ prodId }: { prodId: string }) {
         const res = await addToWishlist(prodId);
         if (res?.status === "success") {
           toast.success("Added to wishlist");
-          setWishlistItems((prev) => [...prev, prodId]);
+          dispatch(addWishlistItem(prodId));
         } else {
           toast.error(res?.message || "Failed to add to wishlist");
         }
