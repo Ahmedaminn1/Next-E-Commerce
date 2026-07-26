@@ -8,11 +8,7 @@ import Footer from "../common/footer";
 import { store } from "@/redux/store";
 import ThemeProvider from "@/providers/theme-provider";
 
-export default function ProvidersComponent({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ProvidersComponent({children,}: {children: React.ReactNode;}) {
   return (
     <Provider store={store}>
       <ThemeProvider>

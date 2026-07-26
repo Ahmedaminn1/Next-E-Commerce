@@ -9,7 +9,6 @@ declare module "next-auth" {
     user: UserDataI,
     token: string
   }
-
   interface UserDataI {
     name: string,
     email: string,

@@ -34,7 +34,6 @@ export default function Navbar() {
   const { count } = useSelector((state: RootState) => state.counter);
   const mode = useSelector((state: RootState) => state.theme.mode);
   const dispatch = useDispatch();
-  console.log(count);
 
   function logoutUser() {
     signOut({ callbackUrl: "/login" });
