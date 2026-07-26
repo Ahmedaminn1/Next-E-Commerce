@@ -23,6 +23,7 @@ import {
 
 
 import AddCartButton from "@/components/products/addToCartBtn";
+import AddToWishlistBtn from "@/components/products/addToWishlistBtn";
 
 export default async function ProductDetails({ params }: { params: Promise<Params> }) {
   const { productId } = await params
@@ -93,7 +94,7 @@ export default async function ProductDetails({ params }: { params: Promise<Param
               </div>
               <CardFooter className="gap-3 w-full">
                 <AddCartButton prodId={product.id} />
-                <Heart className="size-7" />
+                <AddToWishlistBtn prodId={product.id} />
               </CardFooter>
             </div>
           </Card>
@@ -123,7 +124,7 @@ export default async function ProductDetails({ params }: { params: Promise<Param
                         </Link>
                         <CardFooter className="p-4 pt-0 mt-auto flex justify-between items-center gap-2">
                           <AddCartButton prodId={relate._id} />
-                          <Heart className="size-5 cursor-pointer hover:text-red-500 transition-colors" />
+                          <AddToWishlistBtn prodId={relate._id} />
                         </CardFooter>
                       </Card>
                     </div>

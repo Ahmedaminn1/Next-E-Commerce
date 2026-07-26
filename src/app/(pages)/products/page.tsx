@@ -12,6 +12,7 @@ import Image from "next/image";
 import { Heart, Star } from "lucide-react";
 import Link from "next/link";
 import AddCartButton from "@/components/products/addToCartBtn";
+import AddToWishlistBtn from "@/components/products/addToWishlistBtn";
 import { getAllProducts } from "@/app/_actions/products.actions";
 
 export default async function Products() {
@@ -56,7 +57,7 @@ export default async function Products() {
                   </Link>
                   <CardFooter className="gap-3">
                     <AddCartButton prodId={product._id} />
-                    <Heart className="size-7" />
+                    <AddToWishlistBtn prodId={product._id} />
                   </CardFooter>
                 </Card>
               </div>
