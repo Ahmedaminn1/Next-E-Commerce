@@ -24,6 +24,7 @@ import {
 
 import AddCartButton from "@/components/products/addToCartBtn";
 import AddToWishlistBtn from "@/components/products/addToWishlistBtn";
+import ProductReviews from "@/components/products/ProductReviews";
 
 export default async function ProductDetails({ params }: { params: Promise<Params> }) {
   const { productId } = await params
@@ -98,6 +99,8 @@ export default async function ProductDetails({ params }: { params: Promise<Param
               </CardFooter>
             </div>
           </Card>
+
+          <ProductReviews productId={productId} />
 
           <div className="mt-20">
             <h3 className="text-2xl font-bold mb-6">Related Products</h3>
